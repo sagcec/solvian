@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="pt" lang="pt-br">
+	
+	<p:dialog id="dVeiculoDeleteId" widgetVar="dVeiculoDeleteWv" modal="true" header="Veículo" appendTo="@(body)"
+		resizable="false" draggable="false" minWidth="300" closable="true" closeOnEscape="true">
+		
+		<p:ajax event="close" listener="#{veiculoMb.clear}" update=":#{p:component('pgVeiculoDeleteId')}" />
+		
+		<h:form id="fVeiculoDeleteId">
+			<h:panelGroup id="pgVeiculoDeleteId">
+				<p:outputLabel value="#{veiculoMb.entity.chassi}" />
+			</h:panelGroup>
+			
+			<p:spacer height="15px" />
+			
+			<h:panelGroup>
+				<p:panelGrid columns="2">
+					<p:commandButton value="Excluir" action="#{veiculoMb.delete}" process="@form"
+						update=":#{p:component('pgVeiculoDeleteId')}, :#{p:component('dtResultSearchId')}"
+						oncomplete="dVeiculoDeleteWv.hide();" />
+				</p:panelGrid>
+			</h:panelGroup>
+		</h:form>
+		
+	</p:dialog>
+	
+</html>

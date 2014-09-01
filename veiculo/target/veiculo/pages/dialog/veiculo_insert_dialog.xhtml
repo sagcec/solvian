@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="pt" lang="pt-br">
+	
+	<p:dialog id="dVeiculoInsertId" widgetVar="dVeiculoInsertWv" modal="true" header="Veículo" appendTo="@(body)"
+		resizable="false" draggable="false" minWidth="500" closable="true" closeOnEscape="true" height="400">
+		
+		<p:ajax event="close" listener="#{veiculoMb.clear}" update=":#{p:component('pgVeiculoInsertId')}" />
+		
+		<h:form id="fVeiculoInsertId">
+			<h:panelGroup id="pgVeiculoInsertId">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome do veículo" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.chassi}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Cor" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.cor}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Potência do motor" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.potenciaMotor}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Cilindradas" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.cilindradas}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Peso liquído" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.pesoLiquido}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Peso bruto" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.pesoBruto}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Número de série" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.numeroSerie}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Tipo de combustível" />
+					<p:panelGrid columns="2">
+						<p:selectOneMenu value="#{veiculoMb.entity.tipoCombustivel}" required="true">
+							<f:selectItem itemLabel="SELECIONE ..." noSelectionOption="true" />
+							<f:selectItems value="#{veiculoMb.siTipoCombustivel}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Número do motor" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.numeroMotor}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Capacidade máxima de tração" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.capacidadeMaximaTracao}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Distância dos eixos" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.distanciaEixos}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Ano (Modelo)" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.anoModelo}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Ano (Fabricação)" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.anoFabricacao}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Tipo de pintura" />
+					<p:panelGrid columns="2">
+						<p:selectOneMenu value="#{veiculoMb.entity.tipoPintura}" required="true">
+							<f:selectItem itemLabel="SELECIONE ..." noSelectionOption="true" />
+							<f:selectItems value="#{veiculoMb.siTipoPintura}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Tipo do veículo" />
+					<p:panelGrid columns="2">
+						<p:selectOneMenu value="#{veiculoMb.entity.tipoVeiculo}" required="true">
+							<f:selectItem itemLabel="SELECIONE ..." noSelectionOption="true" />
+							<f:selectItems value="#{veiculoMb.siTipoVeiculo}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Espécie do veículo" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.especieVeiculo}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Condição do VIN" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.condicaoVin}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Condição do veículo" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.condicaoVeiculo}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Marca / Modelo" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.codigoMarcaModelo}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Lotação" />
+					<p:panelGrid columns="2">
+						<p:inputText value="#{veiculoMb.entity.lotacao}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Ativo?" />
+					<p:panelGrid columns="2">
+						<p:selectBooleanCheckbox value="#{veiculoMb.entity.ativo}" required="true" />
+						<p:outputLabel value="*" />
+					</p:panelGrid>
+				</p:panelGrid>
+			</h:panelGroup>
+			
+			<p:spacer height="20px" />
+			
+			<h:panelGroup id="pgBotoesId">
+				<p:panelGrid columns="2">
+					<h:panelGroup rendered="#{veiculoMb.entity.id == null}">
+						<p:commandButton value="Salvar" action="#{veiculoMb.insert()}" process="@form"
+							update=":#{p:component('pgVeiculoInsertId')}, :#{p:component('dtResultSearchId')}" />
+					</h:panelGroup>
+					<h:panelGroup rendered="#{veiculoMb.entity.id != null}">
+						<p:commandButton value="Atualizar" action="#{veiculoMb.update()}" process="@form"
+							update=":#{p:component('pgVeiculoInsertId')}, :#{p:component('dtResultSearchId')}" />
+					</h:panelGroup>
+				</p:panelGrid>
+			</h:panelGroup>
+		</h:form>
+		
+	</p:dialog>
+	
+</html>
