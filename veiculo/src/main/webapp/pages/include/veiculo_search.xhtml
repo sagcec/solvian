@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="pt" lang="pt-br">
+	
+	<h:body>
+		<h:panelGroup id="pgSearchId">
+			<h:form id="fSearchId" prependId="false">
+				<p:panelGrid columns="4" style="MARGIN: AUTO;">
+					<p:inputText id="itSearchId" size="40" value="#{veiculoMb.entity.chassi}">
+						<p:watermark for="itSearchId" value="Digite o nome do veículo ..." id="watermark" />
+					</p:inputText>
+					<p:splitButton value="Consultar" action="#{veiculoMb.search}" update=":#{p:component('dtResultSearchId')}">
+						<p:menuitem value="Consulta avançada" oncomplete="dVeiculoSearchWv.show();" />
+					</p:splitButton>
+					
+					<p:commandButton value="JSON" process="@this" oncomplete="dVeiculoJsonWv.show();"
+						update=":#{p:component('pgVeiculoJsonId')}" action="#{veiculoMb.converterjson()}" />
+					
+					<p:selectOneMenu>
+						<f:selectItems value="#{veiculoMb.siSearchType}" />
+					</p:selectOneMenu>
+				</p:panelGrid>
+			</h:form>
+		</h:panelGroup>
+		
+		<p:spacer height="20px" />
+		
+		<h:panelGroup id="pgResultSearchId">
+			<h:form id="fResultSearchId">
+				<p:dataTable id="dtResultSearchId" value="#{veiculoMb.list}" var="varEnt" rowIndexVar="rowIx"
+					emptyMessage="Nenhum resultado encontrado ...">
+					
+					<f:facet name="header">
+						<h:panelGroup style="MARGIN: AUTO;">
+							<p:panelGrid columns="1">
+								<p:commandButton value="Adicionar veículo" onclick="dVeiculoInsertWv.show();"
+									process="@this" actionListener="#{veiculoMb.clear}" update=":#{p:component('pgBotoesId')}" />
+							</p:panelGrid>
+						</h:panelGroup>
+					</f:facet>
+					
+					<p:column style="WIDTH: 18px; TEXT-ALIGN: CENTER;">
+						<h:outputText value="#{rowIx + 1}" />
+					</p:column>
+					
+					<p:column headerText="Chassi">
+						#{varEnt.chassi}
+					</p:column>
+					
+					<p:column headerText="Espécie">
+						#{varEnt.especieVeiculo}
+					</p:column>
+					
+					<p:column headerText="Tipo">
+						#{varEnt.tipoVeiculo}
+					</p:column>
+					
+					<p:column headerText="Combustível">
+						#{varEnt.tipoCombustivel}
+					</p:column>
+					
+					<p:column headerText="Ativo?" style="WIDTH: 30px; TEXT-ALIGN: CENTER;">
+						<p:commandLink update="dtResultSearchId" process="@this" action="#{veiculoMb.enabled}">
+							<h:graphicImage value="../assets/images/icons/icon-goodmark-24x24.png" rendered="#{varEnt.ativo}" />
+							<h:graphicImage value="../assets/images/icons/icon-badmark-24x24.png" rendered="#{!varEnt.ativo}" />
+							
+							<f:setPropertyActionListener target="#{veiculoMb.entity}" value="#{varEnt}" />
+						</p:commandLink>
+					</p:column>
+					
+					<p:column style="WIDTH: 30px; TEXT-ALIGN: CENTER;">
+						<p:commandLink process="@this" oncomplete="dVeiculoInsertWv.show();"
+							update=":#{p:component('pgVeiculoInsertId')}, :#{p:component('pgBotoesId')}">
+							<h:graphicImage value="../assets/images/icons/icon-edit-24x24.png" />
+							
+							<f:setPropertyActionListener target="#{veiculoMb.entity}" value="#{varEnt}" />
+						</p:commandLink>
+					</p:column>
+					
+					<p:column style="WIDTH: 30px; TEXT-ALIGN: CENTER;">
+						<p:commandLink update=":#{p:component('pgVeiculoDeleteId')}" process="@this"
+							oncomplete="dVeiculoDeleteWv.show();">
+							<h:graphicImage value="../assets/images/icons/icon-delete-24x24.png" />
+							
+							<f:setPropertyActionListener target="#{veiculoMb.entity}" value="#{varEnt}" />
+						</p:commandLink>
+					</p:column>
+					
+					<f:facet name="footer">
+						<h:panelGroup style="MARGIN: AUTO;">
+							<p:panelGrid columns="1">
+								Total
+							</p:panelGrid>
+						</h:panelGroup>
+					</f:facet>
+				</p:dataTable>
+			</h:form>
+		</h:panelGroup>
+	</h:body>
+	
+</html>
